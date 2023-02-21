@@ -11,7 +11,7 @@ import { MainService } from '../services/main.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  data = {};
+  data: any = {};
   constructor(private router: Router, private alertCtrl: AlertController,private authCtrl: AuthService, private mainCtrl: MainService, private deliveryCtrl: DeliveryService, private chatCtrl: ChatService) { }
 
   ngOnInit() {

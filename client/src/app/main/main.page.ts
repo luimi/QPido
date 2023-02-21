@@ -10,7 +10,7 @@ import { MainService } from '../services/main.service';
 })
 export class MainPage implements OnInit {
 
-  constructor(private mainCtrl: MainService, private cartCtrl: CartService) { }
+  constructor(public mainCtrl: MainService, public cartCtrl: CartService) { }
 
   ngOnInit() {
     this.mainCtrl.getMainLists();

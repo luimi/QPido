@@ -16,7 +16,7 @@ export class ProductPage implements OnInit {
     message: 'Selecciona la cantidad de este producto',
     translucent: true
   };
-  constructor(private productCtrl: ProductService, private route: ActivatedRoute, private cartCtrl: CartService) { }
+  constructor(private productCtrl: ProductService, private route: ActivatedRoute, public cartCtrl: CartService) { }
 
   ngOnInit() {
   }

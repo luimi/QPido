@@ -15,7 +15,7 @@ export class DeliveryPage implements OnInit {
   delivery;
   updateSubscription;
   showMap = false;
-  constructor(private deliveryCtrl: DeliveryService, private route: ActivatedRoute, private chatCtrl: ChatService, private mapCtrl: MapService, private modalCtrl: ModalController) { }
+  constructor(public deliveryCtrl: DeliveryService, private route: ActivatedRoute, public chatCtrl: ChatService, private mapCtrl: MapService, private modalCtrl: ModalController) { }
 
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');

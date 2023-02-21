@@ -16,7 +16,7 @@ export class AddressPage implements OnInit {
   segment = 'list';
   data: any = {type:'home'};
   loading = true;
-  constructor(private modalCtrl: ModalController, private addressCtrl: AddressService, private mapCtrl: MapService) { }
+  constructor(public modalCtrl: ModalController, public addressCtrl: AddressService, private mapCtrl: MapService) { }
   onMapEvent = (location) => {
     this.data.location = location;
   }

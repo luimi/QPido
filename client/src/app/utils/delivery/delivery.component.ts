@@ -10,7 +10,7 @@ import { DeliveryService } from 'src/app/services/delivery.service';
 export class DeliveryComponent implements OnInit {
   @Input() delivery;
   @Input() showDate = false;
-  constructor(private chatCtrl: ChatService, private deliveryCtrl: DeliveryService) { }
+  constructor(public chatCtrl: ChatService, public deliveryCtrl: DeliveryService) { }
 
   ngOnInit() {}
 

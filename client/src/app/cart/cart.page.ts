@@ -17,7 +17,7 @@ export class CartPage implements OnInit {
     message: 'Selecciona la cantidad de este producto',
     translucent: true
   };
-  constructor(private modalCtrl: ModalController, private cartCtrl: CartService, private utilsCtrl: UtilsService, private router: Router) { }
+  constructor(private modalCtrl: ModalController, public cartCtrl: CartService, public utilsCtrl: UtilsService, private router: Router) { }
 
   async ngOnInit() {
   }

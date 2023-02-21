@@ -7,7 +7,7 @@ import { UtilsService } from './utils.service';
 })
 export class CartService {
 
-  private cart = [];
+  public cart = [];
   public cartTotal = 0;
 
   constructor(private utils: UtilsService) {

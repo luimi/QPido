@@ -8,6 +8,6 @@ import { UtilsService } from '../services/utils.service';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-  constructor(private cartCtrl: CartService, private utils: UtilsService) { }
+  constructor(public cartCtrl: CartService, public utils: UtilsService) { }
 
 }

@@ -15,7 +15,7 @@ import { ProfileService } from '../services/profile.service';
 })
 export class ProfilePage implements OnInit {
   user;
-  constructor(private authCtrl: AuthService, private alertCtrl: AlertController, private router: Router, private profileCtrl: ProfileService, private deliveryCtrl: DeliveryService, private mainCtrl: MainService, private chatCtrl:ChatService, private addressCtrl:AddressService) { }
+  constructor(private authCtrl: AuthService, private alertCtrl: AlertController, private router: Router, public profileCtrl: ProfileService, private deliveryCtrl: DeliveryService, private mainCtrl: MainService, private chatCtrl:ChatService, private addressCtrl:AddressService) { }
 
   ngOnInit() {
     

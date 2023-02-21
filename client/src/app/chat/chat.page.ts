@@ -14,7 +14,7 @@ export class ChatPage implements OnInit {
   newMessage;
   messages = [];
   currentUser;
-  constructor(private chatCtrl:ChatService, private aroute: ActivatedRoute, private utils: UtilsService, private modalCtrl: ModalController) { }
+  constructor(public chatCtrl:ChatService, private aroute: ActivatedRoute, private utils: UtilsService, public modalCtrl: ModalController) { }
 
   async ngOnInit() {
     this.currentUser = this.utils.getCurrentUser();

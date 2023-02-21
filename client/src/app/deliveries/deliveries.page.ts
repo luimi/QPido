@@ -9,7 +9,7 @@ import { UtilsService } from '../services/utils.service';
 })
 export class DeliveriesPage implements OnInit {
 
-  constructor(private deliveryCtrl: DeliveryService, private utils: UtilsService) { }
+  constructor(public deliveryCtrl: DeliveryService, public utils: UtilsService) { }
 
   ngOnInit() {
     this.deliveryCtrl.getDeliveries();
