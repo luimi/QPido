@@ -1,0 +1,16 @@
+ion-card, ion-item {
+    img {
+        width: 100%;
+    }
+    .wrong-price {
+        text-decoration: line-through;
+        margin-right: 10px;
+    }
+    .good-price {
+        color: var(--ion-color-secondary);
+    }
+}
+//ion-grid, ion-col, 
+ion-card {
+    margin:0;
+}

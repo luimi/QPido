@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="round-content">
+    <p><b>¡Hola!</b>, a continuacion llena los siguientes datos para poder acceder a nuestra plataforma.</p>
+    <ion-item>
+      <ion-icon name="mail" color="primary"></ion-icon>
+      <ion-input type="email" placeholder="Correo electrónico" [(ngModel)]="data.username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="person" color="primary"></ion-icon>
+      <ion-input type="text" placeholder="Nombre completo" [(ngModel)]="data.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call" color="primary"></ion-icon>
+      <ion-input type="tel" placeholder="Número telefonico" [(ngModel)]="data.phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock-closed" color="primary"></ion-icon>
+      <ion-input type="password" placeholder="Contraseña" [(ngModel)]="data.password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox color="primary" [(ngModel)]="data.agreement"></ion-checkbox>
+      <p>Acepto los terminos de uso de esta aplicacion</p>
+    </ion-item>
+    <ion-button color="secondary" expand="block" (click)="signup()" [disabled]="!data.username || !data.name || !data.phone || !data.password || !data.agreement">Registrarse</ion-button>
+  </div>
+</ion-content>

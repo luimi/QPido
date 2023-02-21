@@ -1,0 +1,21 @@
+<ion-content class="ion-padding">
+  <h1>Hola!</h1>
+  <p>Este es el asistente, para la instalacion de tu tienda virtual. llena este formulario con los datos esenciales </p>
+  <ion-item>
+    <ion-icon name="person" color="primary"></ion-icon>
+    <ion-input placeholder="Usuario" type="text" [(ngModel)]="data.username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="mail" color="primary"></ion-icon>
+    <ion-input placeholder="Correo electronico" type="mail" [(ngModel)]="data.email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="lock-closed" color="primary"></ion-icon>
+    <ion-input placeholder="Contraseña" type="password" [(ngModel)]="data.password"></ion-input>
+  </ion-item>
+  <h4>Ubicacion del comercio</h4>
+  <div id="map" style="width: 100%; height: 200px;">
+  </div>
+
+  <ion-button color="secondary" expand="block" (click)="initialize()" [disabled]="!data.username || !data.email || !data.password || !data.location"><span [hidden]="isLoading">Instalar</span> <ion-spinner [hidden]="!isLoading"></ion-spinner></ion-button>
+</ion-content>

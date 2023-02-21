@@ -1,0 +1,14 @@
+<ion-item [routerLink]="['/delivery',delivery.id]">
+  <ion-icon
+    [name]="(this.chatCtrl.chatUnreadMessages[delivery.id]?.length>0)?'chatbubble-ellipses':this.deliveryCtrl.DeliveryStatusIcon[delivery.get('status')]"
+    [color]="(this.chatCtrl.chatUnreadMessages[delivery.id]?.length>0)?'primary':'tertiary'" slot="start">
+  </ion-icon>
+  <ion-label>
+    <h3>{{delivery.get('address').get('address')}}</h3>
+    <p>{{this.deliveryCtrl.DeliveryStatus[delivery.get('status')]}}</p>
+    <p [hidden]="!showDate">{{delivery.get('createdAt') | date: 'short'}}</p>
+  </ion-label>
+  <ion-chip slot="end" color="tertiary">
+    {{delivery.get('receipt').get('total') | currency}}
+  </ion-chip>
+</ion-item>

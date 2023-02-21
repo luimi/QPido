@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="this.modalCtrl.dismiss();">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{delivery?.get('user')?.get('name')}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" #content>
+  <ion-list>
+    <ion-item *ngFor="let message of this.chatCtrl.messages">
+      <ion-label [ngClass]="{'ion-text-right': this.delivery?.get('user')?.id !== message?.get('from')?.id}">
+        <h1>{{message.get('message')}}</h1>
+        <p>{{message.get('from')?.get('name')}} - {{message.get('createdAt') | date:'shortTime'}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-item>
+    <ion-input [(ngModel)]="textMessage"></ion-input>
+    <ion-button (click)="send()">
+      <ion-icon name="send"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-footer>

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{product.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="input-file-container">
+    <input type="file" class="input-file" (change)="setImage($event)">
+    <img [src]="product.image?product.image:'./assets/noimage.png'">
+  </div>
+  <ion-item>
+    <ion-label position="floating">Descripcion</ion-label>
+    <ion-textarea [(ngModel)]="product.detail" rows="6"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Precio</ion-label>
+    <ion-input type="number" [(ngModel)]="product.price"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Tags</ion-label>
+    <ion-input type="text" #newTag></ion-input>
+    <ion-button item-right (click)="addTag(newTag.value);newTag.value='';">+</ion-button>
+  </ion-item>
+  <div>
+    <ion-chip *ngFor="let tag of product.tag; let i = index">
+      <ion-label>{{tag}}</ion-label>
+      <ion-icon name="close-circle" (click)="removeTag(i)"></ion-icon>
+    </ion-chip>
+  </div>
+  <ion-item>
+    <ion-label position="fixed">Descuento</ion-label>
+    <ion-input type="number" [(ngModel)]="product.discountPercentage" [disabled]="!product.isDiscount"></ion-input>
+    <ion-toggle [(ngModel)]="product.isDiscount"></ion-toggle>
+  </ion-item>
+  <ion-button (click)="save()" expand="block" [disabled]="!product.detail || !product.price || (product.isDiscount && !product.discountPercentage)">Guardar</ion-button>
+  <ion-button (click)="delete()" expand="block" color="danger">Eliminar</ion-button>
+</ion-content>

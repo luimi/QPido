@@ -1,0 +1,1 @@
+parse-dashboard --dev --appId ipcYdkAVJjlCH8g4m5urxZ6EfiETTn8E3kPkUX2S --masterKey WrXGT3w2U2F6r9Qa11LONYzt3OkoAcYZES2NpCII --serverURL "http://localhost:8080/parse" --appName "Q'Pido" 

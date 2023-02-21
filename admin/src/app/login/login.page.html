@@ -1,0 +1,16 @@
+<ion-content>
+  <div class="logo-content">
+    <img src="./assets/logo.png">
+  </div>
+  <div class="round-content">
+    <ion-item>
+      <ion-icon name="person" color="primary"></ion-icon>
+      <ion-input placeholder="Usuario" type="mail" [(ngModel)]="data.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock-closed" color="primary"></ion-icon>
+      <ion-input placeholder="Contraseña" type="password" [(ngModel)]="data.password"></ion-input>
+    </ion-item>
+    <ion-button color="secondary" expand="block" (click)="login()" >Entrar</ion-button>
+  </div>
+</ion-content>

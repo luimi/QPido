@@ -1,0 +1,7 @@
+{
+  "name": "Q'Pido",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

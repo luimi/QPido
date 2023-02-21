@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pedidos/Entregas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-segment color="primary" value="1" [(ngModel)]="currentList">
+    <ion-segment-button value="1">
+      <ion-label>Solicitados</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <ion-label>En proceso</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="3">
+      <ion-label>Enviados</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="4">
+      <ion-label>Entregados</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-list>
+    <div *ngFor="let delivery of this.deliveryCtrl?.deliveries">
+      <ion-card [hidden]="currentList != delivery.get('status')">
+        <ion-item [hidden]="!delivery.get('user')">
+          <ion-avatar slot="start">
+            <img [src]="delivery.get('user').has('avatar')?delivery.get('user').get('avatar'):'./assets/noimage.png'">
+          </ion-avatar>
+          <ion-label>
+            <h3>{{delivery.get('user').get('name')}}</h3>
+          </ion-label>
+          <ion-button slot="end" fill="clear" color="dark" (click)="openChat(delivery.id)">
+            <ion-icon name="chatbox-ellipses"></ion-icon>
+            <ion-chip [hidden]="!this.chatCtrl?.messagesUnread[delivery.id] || this.chatCtrl?.messagesUnread[delivery.id]?.length === 0">
+              <ion-label>{{this.chatCtrl?.messagesUnread[delivery.id]?.length}}</ion-label>
+            </ion-chip>
+          </ion-button>
+          
+        </ion-item>
+        <ion-item [hidden]="!delivery.get('address')">
+          <ion-icon [name]="delivery.get('address')?.get('type')" slot="start"></ion-icon>
+          <ion-label>
+            <h3>{{delivery.get('address').get('address')}}</h3>
+            <p>{{delivery.get('address').get('extra')}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-list>
+          <ion-item *ngFor="let item of delivery.get('receipt').get('data')">
+            <ion-label>{{item.name}}</ion-label>
+            <ion-note slot="end" color="primary">{{item.qty}}</ion-note>
+          </ion-item>
+        </ion-list>
+        <ion-grid [hidden]="currentList != 1">
+          <ion-row>
+            <ion-col>
+              <ion-button color="primary" expand="block" (click)="changeStatus(delivery,2)">Aceptar</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button color="danger" expand="block" (click)="changeStatus(delivery,5)">Cancelar</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div [hidden]="currentList != 2">
+          <ion-item>
+            <ion-label>Domiciliario</ion-label>
+            <ion-select placeholder="Selecciona uno" [value]="delivery?.get('courier')?.id" (ionChange)="addCourier(delivery, $event.detail.value)">
+              <ion-select-option [value]="courier.id" *ngFor="let courier of this.ecommCtrl?.couriers">{{courier.get('name')}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-button color="primary" expand="block" (click)="removeCourier(delivery)" [disabled]="!delivery.has('courier')">Quitar domiciliario</ion-button>
+          <ion-button color="primary" expand="block" (click)="changeStatus(delivery, 3)">Enviar</ion-button>
+        </div>
+        <ion-button color="primary" expand="block" [hidden]="currentList != 3" (click)="changeStatus(delivery, 4)">Entregar</ion-button>
+      </ion-card>
+    </div>
+    
+  </ion-list>
+</ion-content>

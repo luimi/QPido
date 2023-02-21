@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="product">
+		<img [src]="product.has('image')?product.get('image'):'./assets/noimage.png'" />
+		<ion-card-header>
+			<ion-card-title>{{product?.get('name')}}</ion-card-title>
+			<ion-card-subtitle>{{product?.get('detail')}}</ion-card-subtitle>
+			<p><app-price [product]="product"></app-price></p>
+		</ion-card-header>
+		<ion-card-content>
+			<ion-grid>
+				<ion-row>
+					<ion-col>
+						<div>
+							<ion-item>
+								<ion-label>Cantidad</ion-label>
+								<ion-select [(ngModel)]="qty" [interfaceOptions]="selectConfig" (ionChange)="setQuantity()">
+                  <ion-select-option value="{{num}}" *ngFor="let num of [1,2,3,4,5]">{{num}}</ion-select-option>
+                </ion-select>
+							</ion-item>
+						</div>
+					</ion-col>
+					<ion-col>
+						<div>
+							<ion-button expand="block" color="secondary" [disabled]="this.cartCtrl?.isCartProduct(product.id)" (click)="this.cartCtrl.addCartProduct(product,this.qty)">Agregar</ion-button>
+						</div>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card-content>
+  </ion-card>
+</ion-content>

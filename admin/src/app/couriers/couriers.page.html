@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Repartidores</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button routerLink="./new">
+        <ion-icon slot="start" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let courier of this.couriersCtrl?.couriers" [routerLink]="['./edit',courier.id]">
+      <ion-avatar slot="start">
+        <img [src]="courier.has('avatar')?courier.get('avatar'):'./assets/noimage.png'">
+      </ion-avatar>
+      <ion-label>
+        {{courier.get('name')}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

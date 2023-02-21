@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Repartidor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <img [src]="(user?.has('avatar'))?user.get('avatar'):'./assets/noimage.png'">
+    <ion-item>
+      <ion-label>
+        <h1>{{user?.get('name')}}</h1>
+        <h3>{{user?.get('username')}}</h3>
+        <p>{{user?.id}}</p>
+        <h3 [hidden]="!userNewPassword">La nueva contraseña es: {{userNewPassword}}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-button expand="block" color="primary" (click)="resetPassword()">Reiniciar contraseña</ion-button>
+    
+    <ion-button expand="block" color="danger" (click)="deleteUser()">Eliminar</ion-button>
+  </ion-card>
+</ion-content>

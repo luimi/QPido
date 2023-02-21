@@ -1,0 +1,48 @@
+<ion-content class="ion-padding">
+  <app-empty icon="cart" text="No hay productos seleccionados" [hidden]="this.cartCtrl?.cart.length > 0"></app-empty>
+  <ion-item *ngFor="let product of this.cartCtrl.cart">
+    <ion-thumbnail slot="start">
+      <img [src]="product.p.has('image')?product.p.get('image'):'./assets/noimage.png'">
+    </ion-thumbnail>
+    <ion-label>
+      <h3>{{product.p.get('name')}}</h3>
+      <p><app-price [product]="product.p"></app-price></p>
+    </ion-label>
+    <ion-select [(ngModel)]="product.qty" [interfaceOptions]="selectConfig"
+      (ionChange)="this.cartCtrl?.setCartProductQuantity(product.id,product.qty)">
+      <ion-select-option value="{{num}}" *ngFor="let num of [1,2,3,4,5]">{{num}}</ion-select-option>
+    </ion-select>
+    <ion-button slot="end" color="primary" (click)="this.cartCtrl?.removeCartProduct(product.id)" fill="clear">
+      <ion-icon name="trash" slot="icon-only"></ion-icon>
+    </ion-button>
+    
+
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="ion-padding">
+      <p [hidden]="this.utilsCtrl?.isLogedIn()">Debes iniciar sesión para poder realizar tu pedido</p>
+    </div>
+    
+    <ion-button expand="block" [hidden]="address" color="secondary" (click)="getAddress()" [disabled]="!this.utilsCtrl.isLogedIn()">Seleccionar ubicacion de entrega</ion-button>
+    
+    <ion-item [hidden]="!address">
+      <ion-icon [name]="address?.get('type')" slot="start" color="tertiary"></ion-icon>
+      <ion-label>
+        <h3>{{address?.get('address')}}</h3>
+        <p>{{address?.get('extra')}}</p>
+      </ion-label>
+      <ion-button slot="end" (click)="getAddress()" fill="clear" color="tertiary">
+        <ion-icon slot="icon-only" name="sync"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-title slot="start">Total</ion-title>
+    <ion-title slot="end">{{this.cartCtrl?.cartTotal | currency}}</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-button expand="full" [disabled]="!this.utilsCtrl?.isLogedIn() || this.cartCtrl?.cartTotal==0 || !address" (click)="createDelivery()" color="secondary">Realizar pedido</ion-button>
+  </ion-toolbar>
+</ion-footer>

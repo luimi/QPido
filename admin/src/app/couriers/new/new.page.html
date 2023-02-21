@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo domiciliario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="newUser.name" inputmode="text" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Usuario</ion-label>
+    <ion-input [(ngModel)]="newUser.username" inputmode="text" type="text"></ion-input>
+  </ion-item>
+  <h3 [hidden]="!newUser.password">Usuario creado, la contraseña es: {{newUser.password}}</h3>
+  <ion-button expand="block" (click)="register()" [disabled]="!newUser.name || !newUser.username">Registrar</ion-button>
+</ion-content>

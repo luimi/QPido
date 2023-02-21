@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Productos</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button routerLink="./new">
+        <ion-icon slot="start" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Buscar..." [(ngModel)]="filter" (ionChange)="search($event)" debounce="500"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let product of this.productsCtrl?.products">
+      <ion-avatar slot="start">
+        <img [src]="product.get('image')">
+      </ion-avatar>
+      <ion-label [routerLink]="['./edit',product.id]">{{product.get('name')}}</ion-label>
+      <ion-toggle (ionChange)="this.productsCtrl?.enableDisableProduct(product)" [checked]="product.get('enabled')"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>

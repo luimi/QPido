@@ -1,0 +1,5 @@
+<ion-content class="ion-padding">
+	<app-empty icon="person" text="Ingresa con tu usuario para ver tus pedidos" [hidden]="this.deliveryCtrl?.Deliveries.length > 0 || this.utils.isLogedIn()"></app-empty>
+	<app-empty icon="bicycle" text="¡Aún no tienes pedidos!" [hidden]="this.deliveryCtrl?.Deliveries.length > 0 || !this.utils.isLogedIn()"></app-empty>
+	<app-delivery *ngFor="let delivery of this.deliveryCtrl?.Deliveries" [delivery]="delivery" [showDate]="true"></app-delivery>
+</ion-content>

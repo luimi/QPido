@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="input-file-container">
+    <input type="file" class="input-file" (change)="setImage($event)">
+    <img [src]="newProduct.image?newProduct.image:'./assets/noimage.png'">
+  </div>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="newProduct.name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Descripcion</ion-label>
+    <ion-textarea [(ngModel)]="newProduct.detail"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Precio</ion-label>
+    <ion-input type="number" [(ngModel)]="newProduct.price"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Tags</ion-label>
+    <ion-input type="text" #newTag></ion-input>
+    <ion-button item-right (click)="addTag(newTag.value);newTag.value='';">+</ion-button>
+  </ion-item>
+  <div>
+    <ion-chip *ngFor="let tag of newProduct.tag; let i = index">
+      <ion-label>{{tag}}</ion-label>
+      <ion-icon name="close-circle" (click)="removeTag(i)"></ion-icon>
+    </ion-chip>
+  </div>
+  <ion-button color="primary" expand="block" (click)="save()" [disabled]="!newProduct.image ||!newProduct.name || !newProduct.detail || !newProduct.price">Guardar</ion-button>
+</ion-content>

@@ -1,0 +1,53 @@
+<ion-header>
+	<ion-toolbar color="tertiary">
+		<ion-searchbar placeholder="Buscar..." (ionChange)="mainCtrl.searchMainProducts($event.target.value)"
+			debounce="500"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+	<ion-list *ngIf="this.mainCtrl.mainDeliveries.length>0">
+		<app-delivery *ngFor="let delivery of this.mainCtrl.mainDeliveries" [delivery]="delivery"></app-delivery>
+	</ion-list>
+	<ion-list *ngIf="this.mainCtrl.mainPromos.length>0">
+		<ion-item *ngFor="let promo of this.mainCtrl.mainPromos">
+			<ion-thumbnail slot="start" [routerLink]="['/product',promo.id]">
+				<img [src]="promo.has('image')?promo.get('image'):'./assets/noimage.png'">
+			</ion-thumbnail>
+			<ion-label [routerLink]="['/product',promo.id]">
+				<h3>{{promo.get('name')}}</h3>
+				<p>
+					<app-price [product]="promo"></app-price>
+				</p>
+			</ion-label>
+			<ion-icon name="add" slot="end" color="tertiary" (click)="this.cartCtrl.addCartProduct(promo,'1')"
+				[hidden]="this.cartCtrl.isCartProduct(promo.id)"></ion-icon>
+		</ion-item>
+	</ion-list>
+	<ion-grid *ngIf="this.mainCtrl.mainProducts.length>0">
+		<ion-row>
+			<ion-col size="6" *ngFor="let product of this.mainCtrl.mainProducts">
+				<ion-card>
+					<img [src]="product.has('image')?product.get('image'):'./assets/noimage.png'"
+						[routerLink]="['/product',product.id]">
+					<ion-card-header [routerLink]="['/product',product.id]">
+						<ion-card-title>{{product.get('name')}}</ion-card-title>
+						<ion-card-subtitle>
+							<p>
+								<app-price [product]="product"></app-price>
+							</p>
+						</ion-card-subtitle>
+					</ion-card-header>
+					<ion-card-content>
+						<ion-button expand="block" color="secondary" (click)="this.cartCtrl.addCartProduct(product,'1')"
+							[hidden]="this.cartCtrl.isCartProduct(product.id)">Agregar<ion-icon name="cart"></ion-icon>
+						</ion-button>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	<ion-infinite-scroll threshold="100px" (ionInfinite)="getMore($event)" [disabled]="this.mainCtrl.isSearching || this.mainCtrl.mainProducts.length === this.mainCtrl.mainProductsCount">
+		<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más productos...">
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>

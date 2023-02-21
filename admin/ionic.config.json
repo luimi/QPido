@@ -1,0 +1,7 @@
+{
+  "name": "dondesamy-admin",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
