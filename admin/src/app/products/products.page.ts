@@ -6,8 +6,8 @@ import { ProductsService } from '../services/products.service';
   styleUrls: ['./products.page.scss'],
 })
 export class ProductsPage implements OnInit {
-
-  constructor(private productsCtrl: ProductsService) { }
+  filter: string = "";
+  constructor(public productsCtrl: ProductsService) { }
 
   async ngOnInit() {
     await this.productsCtrl.getProducts();

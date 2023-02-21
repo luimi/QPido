@@ -10,7 +10,7 @@ import { UtilsService } from '../services/utils.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  data = {};
+  data: any = {};
   constructor(private authCtrl: AuthService, private router: Router, private utils: UtilsService, private alertCtrl: AlertController) { }
 
   async ngOnInit() {

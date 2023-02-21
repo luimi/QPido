@@ -64,13 +64,13 @@
           </ion-row>
         </ion-grid>
         <div [hidden]="currentList != 2">
-          <ion-item>
+          <!-- <ion-item>
             <ion-label>Domiciliario</ion-label>
             <ion-select placeholder="Selecciona uno" [value]="delivery?.get('courier')?.id" (ionChange)="addCourier(delivery, $event.detail.value)">
               <ion-select-option [value]="courier.id" *ngFor="let courier of this.ecommCtrl?.couriers">{{courier.get('name')}}</ion-select-option>
             </ion-select>
-          </ion-item>
-          <ion-button color="primary" expand="block" (click)="removeCourier(delivery)" [disabled]="!delivery.has('courier')">Quitar domiciliario</ion-button>
+          </ion-item> -->
+          <!-- <ion-button color="primary" expand="block" (click)="removeCourier(delivery)" [disabled]="!delivery.has('courier')">Quitar domiciliario</ion-button> -->
           <ion-button color="primary" expand="block" (click)="changeStatus(delivery, 3)">Enviar</ion-button>
         </div>
         <ion-button color="primary" expand="block" [hidden]="currentList != 3" (click)="changeStatus(delivery, 4)">Entregar</ion-button>

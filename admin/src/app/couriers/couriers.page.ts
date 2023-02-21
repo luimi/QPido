@@ -8,7 +8,7 @@ import { CourierService } from '../services/courier.service';
 })
 export class CouriersPage implements OnInit {
 
-  constructor(private couriersCtrl: CourierService) { }
+  constructor(public couriersCtrl: CourierService) { }
 
   ngOnInit() {
     this.couriersCtrl.getCouriers()

@@ -14,7 +14,7 @@ export class ChatPage implements OnInit {
   @ViewChild('content') private content: any;
   delivery;
   textMessage = "";
-  constructor(private chatCtrl: ChatService, private aroute: ActivatedRoute, private deliveryCtrl: DeliveriesService, private modalCtrl: ModalController) { }
+  constructor(public chatCtrl: ChatService, private aroute: ActivatedRoute, private deliveryCtrl: DeliveriesService, public modalCtrl: ModalController) { }
 
   async ngOnInit() {
     this.delivery = await this.deliveryCtrl.getDelivery(this.id);

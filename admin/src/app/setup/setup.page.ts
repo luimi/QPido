@@ -72,7 +72,7 @@ export class SetupPage implements OnInit {
     let m = marker(location, options).addTo(map);
     return m;
   }
-  private async initialize() {
+  public async initialize() {
     this.isLoading = true;
     let alert;
     if(!this.data.username || !this.data.email || !this.data.password || !this.data.location){

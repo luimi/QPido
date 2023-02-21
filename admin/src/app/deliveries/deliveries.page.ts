@@ -10,7 +10,7 @@ import { ChatPage } from './chat/chat.page';
 })
 export class DeliveriesPage implements OnInit {
   currentList = 1;
-  constructor(private deliveryCtrl: DeliveriesService, private chatCtrl: ChatService, private modalCtrl: ModalController) { }
+  constructor(public deliveryCtrl: DeliveriesService, public chatCtrl: ChatService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.deliveryCtrl.getDeliveries();
